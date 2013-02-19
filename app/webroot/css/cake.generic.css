@@ -97,6 +97,9 @@ p {
 	background: #003d4c;
 	text-decoration: underline;
 }
+#header.admin,#header.admin h1, #header.admin h1 a{
+	background-color:#a00;
+}
 #content{
 	background: #fff;
 	clear: both;
