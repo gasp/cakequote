@@ -41,6 +41,8 @@
 		</div>
 		<div id="content">
 
+			<?php debug($me); ?>
+
 			<?php echo $this->Session->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>

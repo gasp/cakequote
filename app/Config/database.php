@@ -5,8 +5,8 @@ class DATABASE_CONFIG {
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'cakephp',
-		'password' => 'cakephp',
+		'login' => 'root',
+		'password' => '',
 		'database' => 'cakequote',
 		'encoding' => 'utf8'
 	);
