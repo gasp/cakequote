@@ -23,9 +23,18 @@
 		<td><?php echo h($user['User']['created']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['updated']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
+			<?php /*if (isset($this->User->['username'] == 'admin')){*/
+			echo $this->Html->link(__('View'), array('action' => 'view', $group['Group']['id']));?> 
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $group['Group']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $group['Group']['id']), null, __('Are you sure you want to delete # %s?', $group['Group']['id']));
+			//} ?>
+
+			<!--<?php /*if isset($this->User->['username']== 'modo'){
+				echo $this->Html->link(__('View'), array('action' => 'view', $group['Group']['id'])); 
+			 echo $this->Html->link(__('Edit'), array('action' => 'edit', $group['Group']['id'])); 
+
+			//} ?>
+		<?php /*else {echo $this->Html->link(__('View'), array('action' => 'view', $group['Group']['id']));//}*/ ?>--!>
 		</td>
 	</tr>
 <?php endforeach; ?>

@@ -14,9 +14,36 @@ class UsersController extends AppController {
 
 		parent::beforeFilter();
 		$this->Auth->allow('add');
+<<<<<<< HEAD
 
 	}
 
+=======
+		$this->Auth->allow('logout');
+
+	}
+
+	public function isAuthorized($user){
+		if($this->action =='delete'){
+			return false;
+		}
+		if($this->action=='edit'){
+			//users/edit/6, id is 6
+			$id= $this->request->params['pass'][0];
+			if(isset($user['id']) && $user['id']==$id){
+
+				return true;
+			}
+
+			else{
+				$this->Session->setFlash('petit hacker de merde');
+				return false;
+			}
+		}
+		return parent::isAuthorized($user);
+	}
+
+>>>>>>> 25/02/2013_whatdidido
 /**
 *login and logout
 *@author gasp
@@ -79,8 +106,10 @@ class UsersController extends AppController {
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved'));
 				$this->redirect(array('action' => 'index'));
+
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				echo $this->Html->link('login', '/users/login');
 			}
 		}
 		$groups = $this->User->Group->find('list');
@@ -159,7 +188,23 @@ class UsersController extends AppController {
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 		$this->set('user', $this->User->find('first', $options));
 	}
+/**
+*admin_isAuthorized
+*
+*
+*/
 
+public function admin_isAuthorized($id = null){
+
+		if ($this->action=='view' && isset($user['group_id']) && $user['group_id']==1) {
+			throw new NotFoundException(__("NOT ACCESSIBLE"));
+			
+			return false;
+		}else{
+	//default: securised
+			return true;
+		}
+	}
 /**
  * admin_add method
  *

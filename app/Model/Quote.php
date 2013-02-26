@@ -31,4 +31,11 @@ class Quote extends AppModel {
 			'order' => ''
 		)
 	);
+
+
+	public function isOwnedBy($quote_id,$user_id){
+
+        return $this->field('id',array('id'=>$quote_id, 'user_id'=>$user_id)) === $quote_id;
+
+	}
 }

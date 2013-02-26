@@ -37,7 +37,12 @@ class AppController extends Controller {
 		'Session' ,
 		'Auth' => array(
 			'loginRedirect'=>array('controller' => 'quotes', 'action' => 'index'),
+<<<<<<< HEAD
 			'logoutRedirect'=> array('controller' =>'quotes','action' => 'index')
+=======
+			'logoutRedirect'=> array('controller' =>'quotes','action' => 'index'),
+			'authorize' => array('Controller')
+>>>>>>> 25/02/2013_whatdidido
 			) 
 		);
 
@@ -57,6 +62,7 @@ class AppController extends Controller {
 		 	$this->set('me', array('is' =>0 ,'username'=>'visiteur non connecté' ));
 		 }
 
+<<<<<<< HEAD
 	}
 
 
@@ -64,5 +70,26 @@ class AppController extends Controller {
 
 		//default:securised
 		return false;
+=======
+>>>>>>> 25/02/2013_whatdidido
 	}
+
+
+	/*public $components = array(
+        'Auth' => array('authorize' => 'Controller'),
+    );
+    public function isAuthorized($user = null) {
+        // Chacun des utilisateur enregistré peut accéder aux fonctions publiques
+        if (empty($this->request->params['prefix'] == 'admin')) {
+            return true;
+        }
+
+        // Seulement les administrateurs peuvent accéder aux fonctions d'administration
+        if (isset($this->request->params['prefix'] == 'admin')) {
+            return (bool)($user['User'] === 'admin');
+        }
+
+        // Par défaut n'autorise pas
+        return false;
+    }*/
 }

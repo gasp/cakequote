@@ -17,6 +17,13 @@
 </head>
 <body>
 	<div id="container">
+		<h2>
+				<?php if ($me['id']>0): ?>
+					<div><?php echo $this->Html->link('logout', '/users/logout'); ?></div>
+				<?php else: ?>
+					<div><?php echo $this->Html->link('login', '/users/login'); ?></div>
+				<?php endif; ?>
+			</h2>
 		<div id="header" class="admin">
 			<h1>admin:<?php echo $this->Html->link('cakequote', '/'); ?></h1>
 		</div>

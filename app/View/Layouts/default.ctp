@@ -42,7 +42,18 @@
 		<div id="content">
 
 			<?php debug($me); ?>
+<<<<<<< HEAD
 
+=======
+			
+			<h2>
+				<?php if ($me['id']>0): ?>
+					<div><?php echo $this->Html->link('logout', '/users/logout'); ?></div>
+				<?php else: ?>
+					<div><?php echo $this->Html->link('login', '/users/login'); ?></div>
+			<?php endif; ?>
+			</h2>
+>>>>>>> 25/02/2013_whatdidido
 			<?php echo $this->Session->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>

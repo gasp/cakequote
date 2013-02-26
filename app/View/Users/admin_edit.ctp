@@ -22,5 +22,7 @@
 		<li><?php echo $this->Html->link(__('New Group'), array('controller' => 'groups', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Quotes'), array('controller' => 'quotes', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Quote'), array('controller' => 'quotes', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Logout'), array('action' =>'logout',$this->Auth->logout())); ?> </li>
+
 	</ul>
 </div>
