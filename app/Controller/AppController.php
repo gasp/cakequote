@@ -37,12 +37,8 @@ class AppController extends Controller {
 		'Session' ,
 		'Auth' => array(
 			'loginRedirect'=>array('controller' => 'quotes', 'action' => 'index'),
-<<<<<<< HEAD
-			'logoutRedirect'=> array('controller' =>'quotes','action' => 'index')
-=======
 			'logoutRedirect'=> array('controller' =>'quotes','action' => 'index'),
 			'authorize' => array('Controller')
->>>>>>> 25/02/2013_whatdidido
 			) 
 		);
 
@@ -62,7 +58,6 @@ class AppController extends Controller {
 		 	$this->set('me', array('is' =>0 ,'username'=>'visiteur non connecté' ));
 		 }
 
-<<<<<<< HEAD
 	}
 
 
@@ -70,10 +65,7 @@ class AppController extends Controller {
 
 		//default:securised
 		return false;
-=======
->>>>>>> 25/02/2013_whatdidido
 	}
-
 
 	/*public $components = array(
         'Auth' => array('authorize' => 'Controller'),
