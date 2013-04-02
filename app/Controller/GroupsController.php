@@ -18,62 +18,6 @@ class GroupsController extends AppController {
 	}
 
 /**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Group->exists($id)) {
-			throw new NotFoundException(__('Invalid group'));
-		}
-		$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
-		$this->set('group', $this->Group->find('first', $options));
-	}
-
-/**
- * add method
- *
- * @return void
- */
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->Group->create();
-			if ($this->Group->save($this->request->data)) {
-				$this->Session->setFlash(__('The group has been saved'));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The group could not be saved. Please, try again.'));
-			}
-		}
-	}
-
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function edit($id = null) {
-		if (!$this->Group->exists($id)) {
-			throw new NotFoundException(__('Invalid group'));
-		}
-		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->Group->save($this->request->data)) {
-				$this->Session->setFlash(__('The group has been saved'));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The group could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
-			$this->request->data = $this->Group->find('first', $options);
-		}
-	}
-
-/**
  * delete method
  *
  * @throws NotFoundException

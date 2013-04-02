@@ -32,9 +32,56 @@ App::uses('Controller', 'Controller');
  * @link http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+
+	public $components = array(
+		'Session' ,
+		'Auth' => array(
+			'loginRedirect'=>array('controller' => 'quotes', 'action' => 'index'),
+			'logoutRedirect'=> array('controller' =>'quotes','action' => 'index'),
+			'authorize' => array('Controller')
+			) 
+		);
+
+
+
 	function beforeFilter() {
 		if (isset($this->params['prefix']) && $this->params['prefix'] == 'admin') {
 			$this->layout = 'admin';
 		} 
+		/*allow des accès au site*/
+		 $this->Auth->allow('index','view');
+
+		 if($this->Auth->loggedIn()){
+		 	$this->set('me', $this->Auth->user());
+		 }
+		 else{
+		 	$this->set('me', array('is' =>0 ,'username'=>'visiteur non connecté' ));
+		 }
+
 	}
+
+
+	public function isAuthorized($user){
+
+		//default:securised
+		return false;
+	}
+
+	/*public $components = array(
+        'Auth' => array('authorize' => 'Controller'),
+    );
+    public function isAuthorized($user = null) {
+        // Chacun des utilisateur enregistré peut accéder aux fonctions publiques
+        if (empty($this->request->params['prefix'] == 'admin')) {
+            return true;
+        }
+
+        // Seulement les administrateurs peuvent accéder aux fonctions d'administration
+        if (isset($this->request->params['prefix'] == 'admin')) {
+            return (bool)($user['User'] === 'admin');
+        }
+
+        // Par défaut n'autorise pas
+        return false;
+    }*/
 }

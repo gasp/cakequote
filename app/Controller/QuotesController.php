@@ -6,7 +6,34 @@ App::uses('AppController', 'Controller');
  * @property Quote $Quote
  */
 class QuotesController extends AppController {
+	
+	
+	public function isAuthorized($user){
+		if (isset($user['group_id']) && $user['group_id']>0) {
+			return true;
+		}else{
+	//default: securised
+			return false;
+		}
 
+	
+	
+	if(in_array($this->action, array('edit','delete'))){
+		if(isset($user['group_id']) && $user['group_id'] == 2){
+			return true;
+		}else{
+			$quote_id = $this->request->params['pass'][0];
+			$user_id = $user['id'];
+			
+			if($this->Quote->isOwnedby($quote_id, $$user_id)){
+				return true;
+			}
+		}
+	}
+	
+	
+	return parent::isAuthorized($user);
+}
 /**
  * index method
  *
@@ -40,6 +67,9 @@ class QuotesController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Quote->create();
+			$this->Auth->user('username');
+	
+
 			if ($this->Quote->save($this->request->data)) {
 				$this->Session->setFlash(__('The quote has been saved'));
 				$this->redirect(array('action' => 'index'));
